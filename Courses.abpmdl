@@ -1,0 +1,93 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.BasicTheme": {
+      "version": "8.3.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "8.3.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "8.3.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "8.3.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "8.3.3",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "Courses.Application": {
+      "path": "src/Courses.Application/Courses.Application.abppkg",
+      "folder": "src"
+    },
+    "Courses.Application.Tests": {
+      "path": "test/Courses.Application.Tests/Courses.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "Courses.Domain.Shared": {
+      "path": "src/Courses.Domain.Shared/Courses.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "Courses.Application.Contracts": {
+      "path": "src/Courses.Application.Contracts/Courses.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "Courses.HttpApi": {
+      "path": "src/Courses.HttpApi/Courses.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "Courses.HttpApi.Client": {
+      "path": "src/Courses.HttpApi.Client/Courses.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "Courses.Web": {
+      "path": "src/Courses.Web/Courses.Web.abppkg",
+      "folder": "src"
+    },
+    "Courses.Web.Tests": {
+      "path": "test/Courses.Web.Tests/Courses.Web.Tests.abppkg",
+      "folder": "test"
+    },
+    "Courses.EntityFrameworkCore.Tests": {
+      "path": "test/Courses.EntityFrameworkCore.Tests/Courses.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "Courses.EntityFrameworkCore": {
+      "path": "src/Courses.EntityFrameworkCore/Courses.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "Courses.TestBase": {
+      "path": "test/Courses.TestBase/Courses.TestBase.abppkg",
+      "folder": "test"
+    },
+    "Courses.Domain.Tests": {
+      "path": "test/Courses.Domain.Tests/Courses.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "Courses.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Courses.HttpApi.Client.ConsoleTestApp/Courses.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "Courses.DbMigrator": {
+      "path": "src/Courses.DbMigrator/Courses.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "Courses.Domain": {
+      "path": "src/Courses.Domain/Courses.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

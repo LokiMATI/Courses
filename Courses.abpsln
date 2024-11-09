@@ -1,0 +1,39 @@
+{
+  "id": "82abb372-ef56-438b-9881-514f7ad249a5",
+  "template": "app",
+  "versions": {
+    "AbpFramework": "8.3.3",
+    "AbpStudio": "0.9.5"
+  },
+  "modules": {
+    "Courses": {
+      "path": "Courses.abpmdl"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": [
+        "^/metrics$"
+      ]
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app",
+    "createdAbpStudioVersion": "0.9.5",
+    "tiered": "false",
+    "uiFramework": "mvc",
+    "databaseProvider": "ef",
+    "databaseManagementSystem": "sqlite",
+    "separateTenantSchema": "false",
+    "theme": "basic",
+    "themeStyle": "",
+    "mobileFramework": "none",
+    "publicWebsite": "false",
+    "socialLogin": ""
+  }
+}
