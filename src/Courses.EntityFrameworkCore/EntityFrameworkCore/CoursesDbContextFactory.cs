@@ -17,7 +17,7 @@ public class CoursesDbContextFactory : IDesignTimeDbContextFactory<CoursesDbCont
         CoursesEfCoreEntityExtensionMappings.Configure();
 
         var builder = new DbContextOptionsBuilder<CoursesDbContext>()
-            .UseSqlite(configuration.GetConnectionString("Default"));
+            .UseSqlServer(configuration.GetConnectionString("Default"));
         
         return new CoursesDbContext(builder.Options);
     }
