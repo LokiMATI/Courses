@@ -49,6 +49,7 @@ using Volo.Abp.OpenIddict;
 using Volo.Abp.Security.Claims;
 using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.Studio.Client.AspNetCore;
+using Volo.Abp.EventBus.RabbitMq;
 
 namespace Courses.Web;
 
@@ -66,7 +67,8 @@ namespace Courses.Web;
     typeof(AbpSwashbuckleModule),
     typeof(AbpAspNetCoreSerilogModule)
 )]
-public class CoursesWebModule : AbpModule
+[DependsOn(typeof(AbpEventBusRabbitMqModule))]
+    public class CoursesWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
