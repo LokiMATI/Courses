@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Courses.Permissions;
+using System;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
@@ -17,6 +18,10 @@ public class LessonAppService :
     public LessonAppService(IRepository<Lesson, Guid> repository)
         : base(repository)
     {
-
+        GetPolicyName = CoursesPermissions.Lessons.Default;
+        GetListPolicyName = CoursesPermissions.Lessons.Default;
+        CreatePolicyName = CoursesPermissions.Lessons.Create;
+        UpdatePolicyName = CoursesPermissions.Lessons.Edit;
+        DeletePolicyName = CoursesPermissions.Lessons.Delete;
     }
 }
