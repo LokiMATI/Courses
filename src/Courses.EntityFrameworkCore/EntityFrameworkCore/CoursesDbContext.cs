@@ -14,6 +14,8 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Courses.Courses;
+using Courses.Lessons;
 
 namespace Courses.EntityFrameworkCore;
 
@@ -26,6 +28,8 @@ public class CoursesDbContext :
     IIdentityDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Lesson> Lessons { get; set; }
 
 
     #region Entities from the modules
@@ -78,7 +82,7 @@ public class CoursesDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
-        
+
         /* Configure your own tables/entities inside here */
 
         //builder.Entity<YourEntity>(b =>
@@ -87,5 +91,21 @@ public class CoursesDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
+
+        builder.Entity<Course>(b =>
+        {
+            b.ToTable(CoursesConsts.DbTablePrefix + "Courses",
+                CoursesConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+        });
+
+        builder.Entity<Lesson>(b =>
+        {
+            b.ToTable(CoursesConsts.DbTablePrefix + "Lessons",
+                CoursesConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+        });
     }
 }
