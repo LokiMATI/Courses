@@ -4,6 +4,11 @@
     "AppName": "Courses",
     "Menu:Home": "Home",
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information visit",
-    "Welcome": "Welcome"
+    "Welcome": "Welcome",
+    "Permission:Courses": "Courses",
+    "Permission:Courses": "Course Management",
+    "Permission:Courses.Create": "Creating new courses",
+    "Permission:Courses.Edit": "Editing the courses",
+    "Permission:Courses.Delete": "Deleting the courses"
   }
 }
