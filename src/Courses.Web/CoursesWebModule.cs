@@ -279,11 +279,11 @@ namespace Courses.Web;
         app.UseUnitOfWork();
         app.UseDynamicClaims();
         app.UseAuthorization();
-        app.UseSwagger();
-        app.UseAbpSwaggerUI(options =>
-        {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Courses API");
-        });
+        //app.UseSwagger();
+        //app.UseAbpSwaggerUI(options =>
+        //{
+        //    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Courses API");
+        //});
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();
