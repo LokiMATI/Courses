@@ -16,6 +16,7 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Courses.Courses;
 using Courses.Lessons;
+using Courses.Tags;
 
 namespace Courses.EntityFrameworkCore;
 
@@ -30,6 +31,8 @@ public class CoursesDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Course> Courses { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
+
+    public DbSet<Tag> Tags { get; set; }
 
 
     #region Entities from the modules
@@ -106,6 +109,14 @@ public class CoursesDbContext :
                 CoursesConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+        });
+
+        builder.Entity<Tag>(b =>
+        {
+            b.ToTable(CoursesConsts.DbTablePrefix + "Tags",
+                CoursesConsts.DbSchema);
+            b.ConfigureByConvention();
+            b.Property(x => x.TagName).IsRequired().HasMaxLength(32);
         });
     }
 }

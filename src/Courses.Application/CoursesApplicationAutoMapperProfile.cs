@@ -1,6 +1,7 @@
 using AutoMapper;
 using Courses.Courses;
 using Courses.Lessons;
+using Courses.Tags;
 
 namespace Courses;
 
@@ -13,7 +14,11 @@ public class CoursesApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
         CreateMap<Course, CourseDto>();
         CreateMap<CreateUpdateCourseDto, Course>();
+
         CreateMap<Lesson, LessonDto>();
         CreateMap<CreateUpdateLessonDto, Lesson>();
+
+        CreateMap<Tag, TagDto>();
+        CreateMap<CreateUpdateTagDto, Tag>();
     }
 }

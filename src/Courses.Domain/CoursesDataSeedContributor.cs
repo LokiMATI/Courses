@@ -24,7 +24,7 @@ public class CoursesDataSeederContributor
             await _courseRepository.InsertAsync(
                 new Course
                 {
-                    Name = "Первый курс",
+                    Name = "Буферный курс",
                     PublishDate = DateTime.Now,
                     Author = "Lucky"
                 },

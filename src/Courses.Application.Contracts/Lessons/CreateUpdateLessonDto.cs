@@ -8,8 +8,10 @@ public class CreateUpdateLessonDto
 {
     [Required]
     [StringLength(128)]
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
+    [Required]
+    [DataType(DataType.Date)]
     public DateTime PublishDate { get; set; }
 
     [Required]

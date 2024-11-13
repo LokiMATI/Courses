@@ -22,6 +22,13 @@ public class CoursesPermissionDefinitionProvider : PermissionDefinitionProvider
         lessonsPermission.AddChild(CoursesPermissions.Lessons.Create, L("Permission:Lessons.Create"));
         lessonsPermission.AddChild(CoursesPermissions.Lessons.Edit, L("Permission:Lessons.Edit"));
         lessonsPermission.AddChild(CoursesPermissions.Lessons.Delete, L("Permission:Lessons.Delete"));
+
+        // Tags Permission
+        var tagsGroup = context.AddGroup(CoursesPermissions.GroupTags, L("Permission:Tags"));
+        var tagsPermission = tagsGroup.AddPermission(CoursesPermissions.Tags.Default, L("Permission:Tags.Tags"));
+        tagsPermission.AddChild(CoursesPermissions.Tags.Create, L("Permission:Tags.Create"));
+        tagsPermission.AddChild(CoursesPermissions.Tags.Edit, L("Permission:Tags.Edit"));
+        tagsPermission.AddChild(CoursesPermissions.Tags.Delete, L("Permission:Tags.Delete"));
     }
 
     private static LocalizableString L(string name)
