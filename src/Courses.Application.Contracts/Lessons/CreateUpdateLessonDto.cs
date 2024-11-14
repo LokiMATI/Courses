@@ -18,5 +18,6 @@ public class CreateUpdateLessonDto
     public int CourseId { get; set; }
 
     [Required]
+    [StringLength(100000)]
     public string? Material { get; set; }
 }

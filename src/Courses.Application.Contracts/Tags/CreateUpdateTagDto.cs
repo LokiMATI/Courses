@@ -8,7 +8,7 @@ public class CreateUpdateTagDto
 {
     [Required]
     [StringLength(32)]
-    public required string Name { get; set; }
+    public required string TagName { get; set; }
 
     [Required]
     public List<int>? CoursesId { get; set; }
