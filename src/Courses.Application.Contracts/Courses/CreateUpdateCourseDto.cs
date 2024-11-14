@@ -15,6 +15,7 @@ public class CreateUpdateCourseDto
     public DateTime PublishDate { get; set; } = DateTime.Now;
 
     [Required]
+    [StringLength(64)]
     public string? Author { get; set; }
 
     [Required]
