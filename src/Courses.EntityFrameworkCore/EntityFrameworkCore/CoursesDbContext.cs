@@ -109,6 +109,7 @@ public class CoursesDbContext :
                 CoursesConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            b.Property(x => x.Material).HasMaxLength(100000);
         });
 
         builder.Entity<Tag>(b =>
