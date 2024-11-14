@@ -10,3 +10,13 @@ services:
     container_name: rabbitmq
     hostname: admin
     restart: unless-stopped
+
+  mssqlserver:
+    image: rapidfort/microsoft-sql-server-2019-ib
+    container_name: mssqlserver
+    restart: unless-stopped
+    ports: 
+      - "1433:1433"
+    environment:
+      MSSQL_SA_PASSWORD: "admin"
+      ACCEPT_EULA: "Y"

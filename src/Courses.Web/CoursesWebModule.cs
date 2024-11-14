@@ -50,6 +50,8 @@ using Volo.Abp.Security.Claims;
 using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.Studio.Client.AspNetCore;
 using Volo.Abp.EventBus.RabbitMq;
+using Volo.Abp.BlobStoring.Minio;
+using Volo.Abp.BlobStoring;
 
 namespace Courses.Web;
 
@@ -65,7 +67,8 @@ namespace Courses.Web;
     typeof(AbpTenantManagementWebModule),
     typeof(AbpFeatureManagementWebModule),
     typeof(AbpSwashbuckleModule),
-    typeof(AbpAspNetCoreSerilogModule)
+    typeof(AbpAspNetCoreSerilogModule),
+    typeof(AbpBlobStoringMinioModule)
 )]
 [DependsOn(typeof(AbpEventBusRabbitMqModule))]
     public class CoursesWebModule : AbpModule
@@ -129,7 +132,7 @@ namespace Courses.Web;
             {
                 options.DisableTransportSecurityRequirement = true;
             });
-            
+
             Configure<ForwardedHeadersOptions>(options =>
             {
                 options.ForwardedHeaders = ForwardedHeaders.XForwardedProto;
@@ -149,6 +152,21 @@ namespace Courses.Web;
         {
             options.IsDynamicPermissionStoreEnabled = true;
         });
+
+        Configure<AbpBlobStoringOptions>(options =>
+        {
+            options.Containers.ConfigureDefault(container =>
+            {
+                container.UseMinio(minio =>
+                {
+                    minio.EndPoint = "your minio endPoint";
+                    minio.AccessKey = "your minio accessKey";
+                    minio.SecretKey = "your minio secretKey";
+                    minio.BucketName = "your minio bucketName";
+                });
+            });
+        });
+
     }
 
 
@@ -279,11 +297,11 @@ namespace Courses.Web;
         app.UseUnitOfWork();
         app.UseDynamicClaims();
         app.UseAuthorization();
-        app.UseSwagger();
-        app.UseAbpSwaggerUI(options =>
-        {
-            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Courses API");
-        });
+        //app.UseSwagger();
+        //app.UseAbpSwaggerUI(options =>
+        //{
+        //    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Courses API");
+        //});
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();

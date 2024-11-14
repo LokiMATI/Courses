@@ -18,7 +18,7 @@ public class CoursesDbContextFactory : IDesignTimeDbContextFactory<CoursesDbCont
 
         var builder = new DbContextOptionsBuilder<CoursesDbContext>()
             .UseSqlServer(configuration.GetConnectionString("Default"));
-        
+
         return new CoursesDbContext(builder.Options);
     }
 
