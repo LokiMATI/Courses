@@ -9,7 +9,7 @@ public class LessonDto : AuditedEntityDto<Guid>
 
     public DateTime PublishDate { get; set; }
 
-    public required int CourseId { get; set; }
+    public Guid? CourseId { get; set; }
 
     public string? Material { get; set; }
 }

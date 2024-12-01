@@ -256,6 +256,8 @@ namespace Courses.Web;
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Courses API", Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
+
+                options.HideAbpEndpoints();
             }
         );
     }
@@ -297,11 +299,11 @@ namespace Courses.Web;
         app.UseUnitOfWork();
         app.UseDynamicClaims();
         app.UseAuthorization();
-        //app.UseSwagger();
-        //app.UseAbpSwaggerUI(options =>
-        //{
-        //    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Courses API");
-        //});
+        app.UseSwagger();
+        app.UseAbpSwaggerUI(options =>
+        {
+            options.SwaggerEndpoint("/swagger/v1/swagger.json", "Courses API");
+        });
         app.UseAuditing();
         app.UseAbpSerilogEnrichers();
         app.UseConfiguredEndpoints();

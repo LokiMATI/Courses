@@ -18,6 +18,6 @@ public class CreateUpdateCourseDto
     [StringLength(64)]
     public string? Author { get; set; }
 
-    [Required]
-    public List<int>? LessonsId { get; set; }
+
+    public List<Guid>? LessonsId { get; set; }
 }
