@@ -18,10 +18,10 @@ public class CourseAppService :
     public CourseAppService(IRepository<Course, Guid> repository)
         : base(repository)
     {
-        GetPolicyName = CoursesPermissions.Courses.Default;
-        GetListPolicyName = CoursesPermissions.Courses.Default;
-        CreatePolicyName = CoursesPermissions.Courses.Create;
-        UpdatePolicyName = CoursesPermissions.Courses.Edit;
-        DeletePolicyName = CoursesPermissions.Courses.Delete;
+        //GetPolicyName = CoursesPermissions.Courses.Default;
+        //GetListPolicyName = CoursesPermissions.Courses.Default;
+        //CreatePolicyName = CoursesPermissions.Courses.Create;
+        //UpdatePolicyName = CoursesPermissions.Courses.Edit;
+        //DeletePolicyName = CoursesPermissions.Courses.Delete;
     }
 }

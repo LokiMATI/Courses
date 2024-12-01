@@ -31,7 +31,6 @@ public class CoursesDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Course> Courses { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
-
     public DbSet<Tag> Tags { get; set; }
 
 
@@ -86,21 +85,13 @@ public class CoursesDbContext :
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
 
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(CoursesConsts.DbTablePrefix + "YourEntities", CoursesConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
-
         builder.Entity<Course>(b =>
         {
             b.ToTable(CoursesConsts.DbTablePrefix + "Courses",
                 CoursesConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+            b.Property(x => x.PublishDate).IsRequired();
         });
 
         builder.Entity<Lesson>(b =>

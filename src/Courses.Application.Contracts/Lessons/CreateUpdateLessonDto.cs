@@ -14,10 +14,8 @@ public class CreateUpdateLessonDto
     [DataType(DataType.Date)]
     public DateTime PublishDate { get; set; }
 
-    [Required]
-    public int CourseId { get; set; }
+    public Guid? CourseId { get; set; }
 
-    [Required]
     [StringLength(100000)]
     public string? Material { get; set; }
 }

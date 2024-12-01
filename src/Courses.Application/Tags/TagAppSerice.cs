@@ -18,10 +18,10 @@ public class TagAppService :
     public TagAppService(IRepository<Tag, Guid> repository)
         : base(repository)
     {
-        GetPolicyName = CoursesPermissions.Tags.Default;
-        GetListPolicyName = CoursesPermissions.Tags.Default;
-        CreatePolicyName = CoursesPermissions.Tags.Create;
-        UpdatePolicyName = CoursesPermissions.Tags.Edit;
-        DeletePolicyName = CoursesPermissions.Tags.Delete;
+        //GetPolicyName = CoursesPermissions.Tags.Default;
+        //GetListPolicyName = CoursesPermissions.Tags.Default;
+        //CreatePolicyName = CoursesPermissions.Tags.Create;
+        //UpdatePolicyName = CoursesPermissions.Tags.Edit;
+        //DeletePolicyName = CoursesPermissions.Tags.Delete;
     }
 }
