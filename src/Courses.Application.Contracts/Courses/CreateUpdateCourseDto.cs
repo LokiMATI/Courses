@@ -11,10 +11,6 @@ public class CreateUpdateCourseDto
     public string Name { get; set; } = string.Empty;
 
     [Required]
-    [DataType(DataType.Date)]
-    public DateTime PublishDate { get; set; } = DateTime.Now;
-
-    [Required]
     [StringLength(64)]
     public string? Author { get; set; }
 

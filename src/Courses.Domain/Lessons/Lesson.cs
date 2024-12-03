@@ -7,8 +7,6 @@ public class Lesson : AuditedAggregateRoot<Guid>
 {
     public string Name { get; set; }
 
-    public DateTime PublishDate { get; set; }
-
     public Guid? CourseId { get; set; }
 
     public string? Material {  get; set; }
