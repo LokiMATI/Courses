@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Courses.Lessons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,6 +15,6 @@ public class CreateUpdateCourseDto
     [StringLength(64)]
     public string? Author { get; set; }
 
-
-    public List<Guid>? LessonsId { get; set; }
+    [Required]
+    public List<Lesson>? Lessons { get; set; }
 }
