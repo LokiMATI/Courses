@@ -10,7 +10,5 @@ namespace Courses.Courses
         public string Name { get; set; }
 
         public string? Author { get; set; }
-
-        public List<Lesson>? Lessons { get; set; }
     }
 }

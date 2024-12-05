@@ -91,8 +91,6 @@ public class CoursesDbContext :
                 CoursesConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
-
-            b.HasMany(x => x.Lessons).WithOne(x => x.Course).IsRequired();
         });
 
         builder.Entity<Lesson>(b =>
@@ -103,6 +101,7 @@ public class CoursesDbContext :
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
             b.Property(x => x.Material);
 
+            b.HasOne<Course>().WithMany().HasForeignKey(x => x.CourseId).HasPrincipalKey(x => x.Id).IsRequired();
             b.HasMany(x => x.Tags).WithMany(x => x.Lessons);
         });
 
@@ -111,6 +110,7 @@ public class CoursesDbContext :
             b.ToTable(CoursesConsts.DbTablePrefix + "Tags",
                 CoursesConsts.DbSchema);
             b.ConfigureByConvention();
+            b.HasKey(x => x.TagName);
             b.Property(x => x.TagName).IsRequired().HasMaxLength(32);
         });
     }

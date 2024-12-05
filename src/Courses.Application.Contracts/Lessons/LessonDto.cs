@@ -10,7 +10,7 @@ public class LessonDto : AuditedEntityDto<Guid>
 {
     public string Name { get; set; }
 
-    public Course Course { get; set; }
+    public Guid CourseId { get; set; }
 
     public List<Tag>? Tags { get; set; }
 

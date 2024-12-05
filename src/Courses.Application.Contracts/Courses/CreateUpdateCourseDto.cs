@@ -14,7 +14,4 @@ public class CreateUpdateCourseDto
     [Required]
     [StringLength(64)]
     public string? Author { get; set; }
-
-    [Required]
-    public List<Lesson>? Lessons { get; set; }
 }

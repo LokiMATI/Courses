@@ -13,7 +13,7 @@ public class CreateUpdateLessonDto
     public required string Name { get; set; }
 
     [Required]
-    public Course Course { get; set; }
+    public Guid CourseId { get; set; }
 
     public List<Tag>? Tags { get; set; }
 
