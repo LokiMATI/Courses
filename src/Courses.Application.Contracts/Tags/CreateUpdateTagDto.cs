@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Courses.Lessons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,5 +11,6 @@ public class CreateUpdateTagDto
     [StringLength(32)]
     public string TagName { get; set; }
 
-    public List<Guid>? LessonsId { get; set; }
+    [Required]
+    public List<Lesson> Lessons { get; set; }
 }
