@@ -2,21 +2,22 @@ version: '3'
 services:
   redis:
     image: redis
-    container_name: redis
+    container_name: redis_container
     restart: unless-stopped
   
   rabbitmq:
     image: rabbitmq:3
-    container_name: rabbitmq
+    container_name: rabbitmq_container
     hostname: admin
     restart: unless-stopped
 
-  mssqlserver:
-    image: rapidfort/microsoft-sql-server-2019-ib
-    container_name: mssqlserver
-    restart: unless-stopped
-    ports: 
-      - "1433:1433"
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
     environment:
-      MSSQL_SA_PASSWORD: "admin"
-      ACCEPT_EULA: "Y"
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: Course
+    ports:
+      - "5432:5432"
+    restart: unless-stopped

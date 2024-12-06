@@ -31,7 +31,6 @@ public class CoursesDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Course> Courses { get; set; }
     public DbSet<Lesson> Lessons { get; set; }
-
     public DbSet<Tag> Tags { get; set; }
 
 
@@ -86,15 +85,6 @@ public class CoursesDbContext :
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
 
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(CoursesConsts.DbTablePrefix + "YourEntities", CoursesConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
-
         builder.Entity<Course>(b =>
         {
             b.ToTable(CoursesConsts.DbTablePrefix + "Courses",
@@ -109,7 +99,10 @@ public class CoursesDbContext :
                 CoursesConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
-            b.Property(x => x.Material).HasMaxLength(100000);
+            b.Property(x => x.Material);
+
+            b.HasOne<Course>().WithMany().HasForeignKey(x => x.CourseId).HasPrincipalKey(x => x.Id).IsRequired();
+            b.HasMany(x => x.Tags).WithMany(x => x.Lessons);
         });
 
         builder.Entity<Tag>(b =>
@@ -117,6 +110,7 @@ public class CoursesDbContext :
             b.ToTable(CoursesConsts.DbTablePrefix + "Tags",
                 CoursesConsts.DbSchema);
             b.ConfigureByConvention();
+            b.HasKey(x => x.TagName);
             b.Property(x => x.TagName).IsRequired().HasMaxLength(32);
         });
     }

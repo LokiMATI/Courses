@@ -3,6 +3,7 @@ using System;
 using Courses.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Courses.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    partial class CoursesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241205145719_Comment_Courses_in_Lesson")]
+    partial class Comment_Courses_in_Lesson
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,9 +85,6 @@ namespace Courses.Migrations
                         .HasColumnType("character varying(40)")
                         .HasColumnName("ConcurrencyStamp");
 
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("CreationTime");
@@ -114,18 +114,20 @@ namespace Courses.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("character varying(128)");
 
+                    b.Property<Guid?>("TagId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                    b.HasIndex("TagId");
 
                     b.ToTable("AppLessons", (string)null);
                 });
 
             modelBuilder.Entity("Courses.Tags.Tag", b =>
                 {
-                    b.Property<string>("TagName")
-                        .HasMaxLength(32)
-                        .HasColumnType("character varying(32)");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -147,9 +149,6 @@ namespace Courses.Migrations
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("LastModificationTime");
@@ -158,24 +157,14 @@ namespace Courses.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
-                    b.HasKey("TagName");
-
-                    b.ToTable("AppTags", (string)null);
-                });
-
-            modelBuilder.Entity("LessonTag", b =>
-                {
-                    b.Property<Guid>("LessonsId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("TagsTagName")
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasMaxLength(32)
                         .HasColumnType("character varying(32)");
 
-                    b.HasKey("LessonsId", "TagsTagName");
+                    b.HasKey("Id");
 
-                    b.HasIndex("TagsTagName");
-
-                    b.ToTable("LessonTag");
+                    b.ToTable("AppTags", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -2049,26 +2038,9 @@ namespace Courses.Migrations
 
             modelBuilder.Entity("Courses.Lessons.Lesson", b =>
                 {
-                    b.HasOne("Courses.Courses.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LessonTag", b =>
-                {
-                    b.HasOne("Courses.Lessons.Lesson", null)
-                        .WithMany()
-                        .HasForeignKey("LessonsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Courses.Tags.Tag", null)
-                        .WithMany()
-                        .HasForeignKey("TagsTagName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Lessons")
+                        .HasForeignKey("TagId");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
@@ -2220,6 +2192,11 @@ namespace Courses.Migrations
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Courses.Tags.Tag", b =>
+                {
+                    b.Navigation("Lessons");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

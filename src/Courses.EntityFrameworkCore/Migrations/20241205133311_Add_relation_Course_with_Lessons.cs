@@ -5,7 +5,7 @@
 namespace Courses.Migrations
 {
     /// <inheritdoc />
-    public partial class Created_Tag_Courses_Lessons_Entity : Migration
+    public partial class Add_relation_Course_with_Lessons : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

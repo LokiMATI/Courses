@@ -1,15 +1,18 @@
 ﻿using System;
 using Volo.Abp.Application.Dtos;
+using Courses.Courses;
+using Courses.Tags;
+using System.Collections.Generic;
 
 namespace Courses.Lessons;
 
 public class LessonDto : AuditedEntityDto<Guid>
 {
-    public required string Name { get; set; }
+    public string Name { get; set; }
 
-    public DateTime PublishDate { get; set; }
+    public Guid CourseId { get; set; }
 
-    public required int CourseId { get; set; }
+    public List<Tag>? Tags { get; set; }
 
     public string? Material { get; set; }
 }
