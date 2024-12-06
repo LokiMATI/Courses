@@ -3,6 +3,7 @@ using System;
 using Courses.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Courses.Migrations
 {
     [DbContext(typeof(CoursesDbContext))]
-    partial class CoursesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241205135917_Change_relation_Course_with_Lessons")]
+    partial class Change_relation_Course_with_Lessons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,9 +126,8 @@ namespace Courses.Migrations
 
             modelBuilder.Entity("Courses.Tags.Tag", b =>
                 {
-                    b.Property<string>("TagName")
-                        .HasMaxLength(32)
-                        .HasColumnType("character varying(32)");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -147,9 +149,6 @@ namespace Courses.Migrations
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("LastModificationTime");
@@ -158,7 +157,12 @@ namespace Courses.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("LastModifierId");
 
-                    b.HasKey("TagName");
+                    b.Property<string>("TagName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("AppTags", (string)null);
                 });
@@ -168,12 +172,12 @@ namespace Courses.Migrations
                     b.Property<Guid>("LessonsId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("TagsTagName")
-                        .HasColumnType("character varying(32)");
+                    b.Property<Guid>("TagsId")
+                        .HasColumnType("uuid");
 
-                    b.HasKey("LessonsId", "TagsTagName");
+                    b.HasKey("LessonsId", "TagsId");
 
-                    b.HasIndex("TagsTagName");
+                    b.HasIndex("TagsId");
 
                     b.ToTable("LessonTag");
                 });
@@ -2066,7 +2070,7 @@ namespace Courses.Migrations
 
                     b.HasOne("Courses.Tags.Tag", null)
                         .WithMany()
-                        .HasForeignKey("TagsTagName")
+                        .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

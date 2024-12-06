@@ -13,11 +13,13 @@ public class CoursesDbContextFactory : IDesignTimeDbContextFactory<CoursesDbCont
     public CoursesDbContext CreateDbContext(string[] args)
     {
         var configuration = BuildConfiguration();
-        
+
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
         CoursesEfCoreEntityExtensionMappings.Configure();
 
         var builder = new DbContextOptionsBuilder<CoursesDbContext>()
-            .UseSqlServer(configuration.GetConnectionString("Default"));
+            .UseNpgsql(configuration.GetConnectionString("Default"));
 
         return new CoursesDbContext(builder.Options);
     }

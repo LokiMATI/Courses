@@ -52,6 +52,7 @@ using Volo.Abp.Studio.Client.AspNetCore;
 using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.BlobStoring.Minio;
 using Volo.Abp.BlobStoring;
+using Volo.Abp.AspNetCore.SignalR;
 
 namespace Courses.Web;
 
@@ -71,6 +72,7 @@ namespace Courses.Web;
     typeof(AbpBlobStoringMinioModule)
 )]
 [DependsOn(typeof(AbpEventBusRabbitMqModule))]
+    [DependsOn(typeof(AbpAspNetCoreSignalRModule))]
     public class CoursesWebModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)

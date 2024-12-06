@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Courses.Lessons;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Volo.Abp.Domain.Entities.Auditing;
 
@@ -8,9 +10,5 @@ public class Course: AuditedAggregateRoot<Guid>
 {
     public string Name { get; set; }
 
-    public DateTime PublishDate { get; set; }
-
     public string? Author { get; set; }
-
-    public List<Guid>? LessonsId { get; set; }
 }

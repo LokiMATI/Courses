@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Courses.Courses;
+using Courses.Tags;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,11 +13,9 @@ public class CreateUpdateLessonDto
     public required string Name { get; set; }
 
     [Required]
-    [DataType(DataType.Date)]
-    public DateTime PublishDate { get; set; }
+    public Guid CourseId { get; set; }
 
-    public Guid? CourseId { get; set; }
+    public List<Tag>? Tags { get; set; }
 
-    [StringLength(100000)]
     public string? Material { get; set; }
 }
